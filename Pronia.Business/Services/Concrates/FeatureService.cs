@@ -16,20 +16,23 @@ namespace Pronia.Business.Services.Concrates
         {
             _featureRepository = FeatureRepository;
         }
-        public void Add(Feature feature)
+        public void AddF(Feature feature)
         {
             _featureRepository.Add(feature);
+            _featureRepository.Commit();
         }
 
-        public void Delete(int id)
+        public void DeleteF(int id)
         {
             var aa = _featureRepository.Get(p => p.Id == id);
             _featureRepository.Delete(aa);
+            _featureRepository.Commit();
         }
 
         public Feature Get(Func<Feature, bool> func = null)
         {
             return _featureRepository.Get(func);
+
         }
 
         public List<Feature> GetAll(Func<Feature, bool> func = null)
@@ -37,14 +40,17 @@ namespace Pronia.Business.Services.Concrates
             return _featureRepository.GetAll(func);
         }
 
-        public void Update(int id, Feature feature)
+        public void UpdateF(int? id, Feature feature)
         {
-            var aa = _featureRepository.Get(p => p.Id == id);
-            aa.Id = feature.Id;
-            aa.Icon = feature.Icon;
-            aa.Title = feature.Title;
-            aa.Description = feature.Description;
-
+            if (id != null)
+            {
+                var aa = _featureRepository.Get(p => p.Id == id);
+                aa.Id = feature.Id;
+                aa.Icon = feature.Icon;
+                aa.Title = feature.Title;
+                aa.Description = feature.Description;
+                _featureRepository.Commit();
+            }
         }
     }
 }

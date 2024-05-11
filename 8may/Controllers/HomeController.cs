@@ -4,6 +4,7 @@ using System.Diagnostics;
 
 namespace _8may.Controllers
 {
+    //[Area("Admin")]
     public class HomeController : Controller
     {
         IFeatureService _featureService;

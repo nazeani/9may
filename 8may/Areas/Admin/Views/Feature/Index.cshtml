@@ -1,23 +1,38 @@
-﻿@using Pronia.Core.Models
-@model List<Feature>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Icon</th>
-            <th scope="col">Title</th>
-            <th scope="col">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Icon<td>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-            </tr>
-        }
-    </tbody>
-</table>
+﻿@model List<Feature>
+<div class="container">
+	<div class="row">
+        <div class="col-3 mb-3">
+            <a asp-action="Create"class="btn btn-outline-primary">Create Feature</a>
+        </div>
+		<div class="col-12">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Icon</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>@item.Id</td>
+                            <td>@item.Icon</td>
+                            <td>@item.Title</td>
+                            <td>@item.Description</td>
+                            <td><a asp-action="Delete" asp-asp-controller="Feature"  asp-route-id="@item.Id"  class="btn btn-outline-danger">Delete</a></td>
+                            <td><a asp-action="Update" asp-asp-controller="Feature" asp-route-id2="@item.Id" class="btn btn-outline-info">Update</a></td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+	</div>
+</div>
